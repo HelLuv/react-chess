@@ -16,6 +16,20 @@ const BoardComponent: React.FC<BoardComponentProps> = ({board, setBoard}) => {
     if (cell.figure) {
       setSelectedCell(cell);
     }
+  };
+
+  React.useEffect(() => {
+    highlightCells();
+  }, [selectedCell])
+
+  const highlightCells = () => {
+    board.highlightCells(selectedCell);
+    updateBoard();
+  }
+
+  const updateBoard = () => {
+    const newBoard = board.getCopyBoard();
+    setBoard(newBoard);
   }
 
   return (
