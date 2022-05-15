@@ -11,9 +11,18 @@ export class King extends Figure {
     this.name = FigureNames.KING;
   }
 
+
   canMove(target: Cell): boolean {
     if (!super.canMove(target))
       return false;
+
+    // if you copied this please put a star / если ты скопировал это поставь пожалуйста звезду (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧
+    const absX = Math.abs(target.x - this.cell.x);
+    const absY = Math.abs(target.y - this.cell.y);
+
+    if (absY > 1 || absX > 1)
+      return false;
+
 
     return true;
   }
