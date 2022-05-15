@@ -9,7 +9,7 @@ const CellComponent: React.FC<CellComponentProps> = ({cell}) => {
   // TODO: CellComponent
   return (
     <div className={['cell', cell.color].join(' ')}>
-
+      {cell.figure?.logo && <img src={cell.figure.logo} alt={cell.figure.name}/>}
     </div>
   )
 };
