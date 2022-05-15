@@ -16,8 +16,7 @@ const BoardComponent: React.FC<BoardComponentProps> = ({board, setBoard}) => {
     if (selectedCell && selectedCell !== cell && selectedCell.figure?.canMove(cell)) {
       selectedCell.moveFigure(cell);
       setSelectedCell(null);
-    }
-    if (cell.figure) {
+    } else {
       setSelectedCell(cell);
     }
   };
@@ -44,7 +43,7 @@ const BoardComponent: React.FC<BoardComponentProps> = ({board, setBoard}) => {
             <CellComponent
               cell={cell}
               onCellClick={onCellClick}
-              selected={cell.x === selectedCell?.x && cell.y === selectedCell?.y}
+              selected={!!(cell.x === selectedCell?.x && cell.y === selectedCell?.y && cell?.figure)}
               key={cell.id}
             />
           ))}
