@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import {CellComponent} from "../index";
 import {Board} from "../../models/Board";
+import {Cell} from "../../models/Cell";
 
 interface BoardComponentProps {
   board: Board;
@@ -9,7 +10,14 @@ interface BoardComponentProps {
 }
 
 const BoardComponent: React.FC<BoardComponentProps> = ({board, setBoard}) => {
-  // TODO: BoardComponent
+  const [selectedCell, setSelectedCell] = React.useState<Cell | null>(null);
+
+  const onCellClick = (cell: Cell) => {
+    if (cell.figure) {
+      setSelectedCell(cell);
+    }
+  }
+
   return (
     <div className="board">
       {board.cells.map((row, index) => (
@@ -17,6 +25,8 @@ const BoardComponent: React.FC<BoardComponentProps> = ({board, setBoard}) => {
           {row.map((cell) => (
             <CellComponent
               cell={cell}
+              onCellClick={onCellClick}
+              selected={cell.x === selectedCell?.x && cell.y === selectedCell?.y}
               key={cell.id}
             />
           ))}
