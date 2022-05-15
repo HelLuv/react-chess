@@ -51,5 +51,17 @@ body {
 }
 
 .selected {
-    background-color: brown;
+    background-color: #c35050;
+    border: 1px solid #3f3f3f;
+}
+
+.available {
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    background-color: #13901f;
+}
+
+.availableWithFigure {
+    background-color: #13901f;
 }
