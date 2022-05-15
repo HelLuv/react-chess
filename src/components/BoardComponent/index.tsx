@@ -13,6 +13,10 @@ const BoardComponent: React.FC<BoardComponentProps> = ({board, setBoard}) => {
   const [selectedCell, setSelectedCell] = React.useState<Cell | null>(null);
 
   const onCellClick = (cell: Cell) => {
+    if (selectedCell && selectedCell !== cell && selectedCell.figure?.canMove(cell)) {
+      selectedCell.moveFigure(cell);
+      setSelectedCell(null);
+    }
     if (cell.figure) {
       setSelectedCell(cell);
     }

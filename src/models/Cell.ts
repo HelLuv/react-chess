@@ -21,4 +21,13 @@ export class Cell {
     this.available = false;
     this.id = `${x}${y}`
   }
+
+  moveFigure(target: Cell) {
+    if (this.figure?.canMove(target)) {
+      this.figure?.moveFigure(target);
+      target.figure = this.figure;
+      this.figure = null;
+    }
+  }
+
 }
