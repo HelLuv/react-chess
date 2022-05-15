@@ -16,6 +16,7 @@ const CellComponent: React.FC<CellComponentProps> = ({cell, selected, onCellClic
         cell.color,
         selected ? "selected" : "",
         cell.available && cell.figure ? "availableWithFigure" : "",
+        cell.available ? "cursorPointer" : "",
       ].join(' ')}
       onClick={() => onCellClick(cell)}
     >

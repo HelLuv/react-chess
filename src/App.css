@@ -22,6 +22,7 @@ body {
 
 
 .board {
+    margin-top: 1rem;
     width: calc(64px * 8);
     height: calc(64px * 8);
     display: flex;
@@ -64,4 +65,16 @@ body {
 
 .availableWithFigure {
     background-color: #13901f;
+    cursor: pointer;
+}
+
+.cursorPointer {
+    cursor: pointer;
+}
+
+.lost {
+    height: calc(50vh - 60px);
+    padding: 30px;
+    margin-left: 50px;
+    background-color: lightgray;
 }

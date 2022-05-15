@@ -1,0 +1,55 @@
+import * as React from 'react';
+import {Player} from "../../models/Player";
+import {Colors} from "../../models/Colors";
+
+interface TimerProps {
+  currentPlayer: Player | null;
+  restart: () => void;
+}
+
+const Timer: React.FC<TimerProps> = ({currentPlayer, restart}) => {
+
+  const [blackTime, setBlackTime] = React.useState(300);
+  const [whiteTime, setWhiteTime] = React.useState(300);
+
+  const timer = React.useRef <null | ReturnType<typeof setInterval>>(null)
+
+  React.useEffect(() => {
+    startTimer();
+  }, [currentPlayer])
+
+  const startTimer = () => {
+    if (timer.current) {
+      clearInterval(timer.current);
+    }
+
+    const callback = currentPlayer?.color === Colors.WHITE ? decrementWhiteTimer : decrementBlackTimer;
+    timer.current = setInterval(callback, 1000);
+  };
+
+  const decrementBlackTimer = () => {
+    setBlackTime(prev => prev - 1);
+  };
+
+  const decrementWhiteTimer = () => {
+    setWhiteTime(prev => prev - 1);
+  };
+
+  const handleRestart = () => {
+    setBlackTime(300);
+    setWhiteTime(300);
+    restart();
+  }
+
+  return (
+    <div>
+      <div>
+        <button onClick={() => handleRestart()}>Restart Game</button>
+      </div>
+      <h2>Black — {blackTime}</h2>
+      <h2>White — {whiteTime}</h2>
+    </div>
+  )
+};
+
+export default React.memo<TimerProps>(Timer);
